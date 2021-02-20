@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
 // Update a post
 router.patch("/:postId", async (req, res) => {
 	try {
-		const updatedPost = await Post.updateOne(
+		const updatedPost = await Post.findOneAndUpdate(
 			{ _id: req.params.postId },
 			{
 				$set: {
@@ -49,6 +49,7 @@ router.patch("/:postId", async (req, res) => {
                     description: req.body.description
 				},
 			},
+			{ new: true },
 		);
 		res.json(updatedPost);
 	} catch (err) {
@@ -60,7 +61,7 @@ router.patch("/:postId", async (req, res) => {
 router.delete("/:postId", async (req, res) => {
 	try {
 		const removedPost = await Post.remove({ _id: req.params.postId });
-		res.json(removedPost);
+		res.json(req.params.postId);
 	} catch (err) {
 		res.json(error);
 	}

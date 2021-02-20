@@ -18,4 +18,9 @@ app.listen(3000);
 
 //Connecting to database
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true,useUnifiedTopology: true });
+mongoose.connect(process.env.DB_CONNECTION, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
+
+module.exports = app;
